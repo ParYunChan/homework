@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또번호 예측 프로그램</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        let lotto = [];
+        let check = false;
+        document.write(`오늘의 예측 로또번호 <br>`)
+
+        while(true) {
+            // 랜덤한 숫자 생성후 배열에 담기
+            let rand = Math.random();
+            let lotto_rand = Math.floor(rand * 45) + 1;
+
+            // 중복되는 숫자 걸러내기
+            for (let value of lotto) {
+                if (lotto_rand == value) {
+                    check = true;
+                    break;
+                } else {
+                    check = false;
+                }
+            }
+
+            // 중복이 없을때만 배열에 추가
+            if(check == false){
+                lotto.push(lotto_rand);
+            }
+
+            // 랜덤한 숫자 6개 작성시 while문 나감
+            if (lotto.length == 6) {
+                break;
+            }
+        }
+
+        // 숫자 정렬 오름차순 
+        lotto.sort(function(a, b){
+            return a - b;
+        });
+
+        document.write(lotto);
+    </script>
+</body>
+
+</html>
